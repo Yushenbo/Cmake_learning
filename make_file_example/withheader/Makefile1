@@ -1,0 +1,2 @@
+demo: src/main.cpp src/test.cpp
+	g++ -o demo src/main.cpp src/test.cpp -I./inc -lpthread

@@ -1,8 +1,8 @@
-cmake_minimum_required (VERSION 2.8)
-project (Tutorial)
+cmake_minimum_required(VERSION 2.8)
+project(Tutorial)
 # The version number
-set (Tutorial_VERSION_MAJOR 1)
-set (Tutorial_VERSION_MINOR 0)
+set(Tutorial_VERSION_MAJOR 1)
+set(Tutorial_VERSION_MINOR 0)
 
 # configure a header file to pass some of the CMake setting
 # to the source code
@@ -15,5 +15,16 @@ configure_file (
 # so that we will find TutorialConfig.h
 include_directories("{PROJECT_BINARY_DIR}")
 
+# add the MathFuncitons library ?
+#
+if (USE_MYMATH)
+    include_directories("{PROJECT_BINARY_DIR}/MathFunctions")
+    add_subdirectory (MathFunctions)
+    set (EXTRA_LIBS ${EXTRA_LIBS} MathFunctions)
+endif (USE_MYMATH)
+
+add_library(MathFunctions mysqrt.cxx)
+
 # add the executable
 add_executable(Tutorial tutorial.cxx)
+target_link_libraries(Tutorial MathFunction)

@@ -1,0 +1,14 @@
+CC=g++
+CFLAGS=-I./inc
+LFLAGS=-lpthread
+DEPS=inc/test.hpp
+OBJ=main.o test.o
+
+%.o: src/%.cpp $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+main: $(OBJ)
+	$(CC) -o $@ $^ $(LFLAGS)
+
+clean:
+	rm *.o main
